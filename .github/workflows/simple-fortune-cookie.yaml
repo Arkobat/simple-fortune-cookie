@@ -20,7 +20,7 @@ jobs:
   docker-push:
     name: Docker Push
     runs-on: ubuntu-latest
-    depends-on: 
+    needs: 
       - frontend-test
     steps:
       - name: Checkout 
