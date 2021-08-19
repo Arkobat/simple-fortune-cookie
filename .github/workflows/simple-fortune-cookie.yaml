@@ -10,5 +10,5 @@ jobs:
         uses: actions/checkout@v2
       - name: Cookie Test
         run: |
-          chmod +x frontend/main_test.go 
-          go run frontend/ci/main_test.go
+          cd frontend
+          go test
