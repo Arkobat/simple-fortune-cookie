@@ -20,15 +20,18 @@ jobs:
   docker-push:
     name: Docker Push
     runs-on: ubuntu-latest
+    depends_on: frontend-test
     steps:
       - name: Checkout 
         uses: actions/checkout@v2
       - name: Deploy to DockerHub
         run: |
+          docker-compose create
           export GIT_COMMIT="GA-$GITHUB_SHA"
           chmod +x ci/push-docker.sh
           ci/push-docker.sh
     env:
       docker_username: ${{ secrets.DOCKER_USERNAME }}
       docker_password: ${{ secrets.DOCKER_PASSWORD }}
+
 
