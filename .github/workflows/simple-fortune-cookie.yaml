@@ -5,27 +5,30 @@ on:
       - main 
 
 jobs:
-  test:
+  frontend-test:
+    name: Frontend Test
     runs-on: ubuntu-latest
     container: golang:latest
     steps:
-      - name: Checkout 
+      - name: Checkout repo
         uses: actions/checkout@v2
-      - name: Cookie Test
+      - name: Run test
         run: |
           cd frontend
           go test
 
   docker-push:
+    name: Docker Push
     runs-on: ubuntu-latest
-    container: golang:latest
     steps:
       - name: Checkout 
         uses: actions/checkout@v2
-      - name: Cookie Test
+      - name: Deploy to DockerHub
         run: |
-          cd frontend
-          go test
+          export GIT_COMMIT="GA-$GITHUB_SHA"
+          chmod +x ci/push-docker.sh
+          ci/push-docker.sh
     env:
       docker_username: ${{ secrets.DOCKER_USERNAME }}
       docker_password: ${{ secrets.DOCKER_PASSWORD }}
+
