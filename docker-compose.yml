@@ -1,0 +1,45 @@
+
+version: '3.0'
+
+#volumes:
+#  db:
+
+services:
+  frontend:
+    container_name: frontend
+    image: golang:latest
+    restart: always
+    volumes:
+      - backend/:backend/
+    command: bash -c "go build && go run frontend"
+    ports:
+     - "8080:8080"
+    depends_on:
+      - backend
+
+#  backend:
+#    container_name: wordpress
+#    depends_on:
+#      - db
+#    image: wordpress:5.7.2-apache
+#    volumes:
+#      - wordpress:/var/www/html
+#    restart: always
+#    environment:
+#      WORDPRESS_DB_HOST: db:3306
+#      WORDPRESS_DB_USER: wordpress
+#      WORDPRESS_DB_PASSWORD: wordpress
+#      WORDPRESS_DB_NAME: wordpress
+#
+#  db:
+#    container_name: db
+#    image: mysql:5.7
+#    volumes:
+#      - db:/var/lib/mysql
+#    restart: always
+#    environment:
+#      MYSQL_ROOT_PASSWORD: wordpress_root_pass
+#      MYSQL_DATABASE: wordpress
+#      MYSQL_USER: wordpress
+#      MYSQL_PASSWORD: wordpress
+  
