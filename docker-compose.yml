@@ -10,27 +10,22 @@ services:
     image: golang:latest
     restart: always
     volumes:
-      - backend/:backend/
-    command: bash -c "go build && go run frontend"
+      - /home/ubuntu/simple-fortune-cookie/frontend/:/frontend/
+    command: bash -c "cd /frontend && go build && go run frontend"
     ports:
      - "8080:8080"
     depends_on:
       - backend
 
-#  backend:
-#    container_name: wordpress
-#    depends_on:
-#      - db
-#    image: wordpress:5.7.2-apache
-#    volumes:
-#      - wordpress:/var/www/html
-#    restart: always
-#    environment:
-#      WORDPRESS_DB_HOST: db:3306
-#      WORDPRESS_DB_USER: wordpress
-#      WORDPRESS_DB_PASSWORD: wordpress
-#      WORDPRESS_DB_NAME: wordpress
-#
+  backend:
+    container_name: backend
+    image: golang:latest
+    volumes:
+      - /home/ubuntu/simple-fortune-cookie/backend/:/backend/
+    restart: always
+    command: bash -c "cd /backend && go build && go run backend"
+    ports: 
+      - "9000:9000"
 #  db:
 #    container_name: db
 #    image: mysql:5.7
