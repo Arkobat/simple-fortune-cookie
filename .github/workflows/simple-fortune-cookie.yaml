@@ -5,13 +5,14 @@ on:
       - main 
 
 jobs:
-  Test:
+  frontend-test:
+    name: Frontend Test
     runs-on: ubuntu-latest
     container: golang:latest
     steps:
-      - name: Checkout 
+      - name: Checkout repo
         uses: actions/checkout@v2
-      - name: Cookie Test
+      - name: Run test
         run: |
           cd frontend
           go test
