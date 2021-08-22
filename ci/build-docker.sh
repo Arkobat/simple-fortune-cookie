@@ -1,8 +1,8 @@
 #!/bin/bash
-docker build -t "$docker_username/frontend:1.0-${GIT_COMMIT::4} ../frontend/" 
-docker build -t "$docker_username/frontend:latest ../frontend/" 
-
-docker build -t "$docker_username/backend:1.0-${GIT_COMMIT::4} ../backend/" 
-docker build -t "$docker_username/backend:latest ../backend/" 
-
+DockerRepo="${docker_username}"
+Tag="${GIT_COMMIT::4}"
+docker build -t "${DockerRepo}sft-frontend:latest" -t "${DockerRepo}sft-frontend:1.0-$Tag" frontend/
+docker build -t "${DockerRepo}sft-backend:latest" -t "${DockerRepo}sft-backend:1.0-$Tag" backend/
 wait
+
+
