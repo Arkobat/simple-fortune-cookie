@@ -5,7 +5,12 @@ kubectl apply -f kubernetes/
 sleep 1s
 
 # Retrive IP and port dynamicly
+echo "Getting IPs: "
+kubectl get nodes -o wide | tail -n 1 | awk '{print $7}'
 IP=`kubectl get nodes -o wide | tail -n 1 | awk '{print $7}'`
+
+echo "Getting Ports: "
+kubectl get service frontend-svc | grep frontend | awk '{print $5}' | tr ":" "\t" | awk '{print $2}' | tr "/" "\t" | awk '{print $1}'
 PORT=`kubectl get service frontend-svc | grep frontend | awk '{print $5}' | tr ":" "\t" | awk '{print $2}' | tr "/" "\t" | awk '{print $1}'`
 DOMAIN=$IP:$PORT
 
