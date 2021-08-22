@@ -17,21 +17,21 @@ jobs:
           cd frontend
           go test
 
-  persistence-test:
-    name: Persistence Test
+  docker-test:
+    name: Docker Compose Persistence Test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
       - name: Run test
-        run: chmod +x ci/persistence-test.sh && ci/persistence-test.sh
+        run: chmod +x ci/docker_test.sh && ci/docker_test.sh
 
   docker-push:
     name: Docker Push
     runs-on: ubuntu-latest
     needs: 
       - frontend-test
-      - persistence-test
+      - docker-test
     env:
       docker_username: ${{ secrets.DOCKER_USERNAME }}
       docker_password: ${{ secrets.DOCKER_PASSWORD }}
@@ -45,4 +45,13 @@ jobs:
       - name: Deploy to DockerHub
         run: chmod +x ci/push-docker.sh && ci/push-docker.sh
 
-
+  docker-push:
+    name: Docker Compose Persistence Test
+    runs-on: ubuntu-latest
+    needs: 
+      - frontend-test
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Run test
+        run: chmod +x ci/k8_test.sh && ci/k8_test.sh
