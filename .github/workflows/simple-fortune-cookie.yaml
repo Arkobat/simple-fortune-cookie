@@ -45,11 +45,11 @@ jobs:
       - name: Deploy to DockerHub
         run: chmod +x ci/push-docker.sh && ci/push-docker.sh
 
-  docker-push:
+  kubenetes-test:
     name: Docker Compose Persistence Test
     runs-on: ubuntu-latest
     needs: 
-      - frontend-test
+      - docker-push
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
