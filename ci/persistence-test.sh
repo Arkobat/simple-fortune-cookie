@@ -17,7 +17,7 @@ sleep 3s
 docker-compose up -d
 sleep 3s
 
-ALL=`curl localhost:8080/api/all | grep "Test Cookie2"`
+ALL=`curl localhost:8080/api/all | grep "Test Cookie"`
 
 
 if [ -z "$ALL" ]
