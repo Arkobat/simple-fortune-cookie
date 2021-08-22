@@ -4,11 +4,8 @@ version: '3.0'
 services:
   frontend:
     container_name: frontend
-    image: golang:latest
+    build: ./frontend
     restart: always
-    volumes:
-      - /home/ubuntu/simple-fortune-cookie/frontend/:/frontend/
-    command: bash -c "cd /frontend && go build && go run frontend"
     environment:
         BACKEND_DNS: backend
     ports:
