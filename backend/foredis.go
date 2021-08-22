@@ -14,13 +14,14 @@ var usingRedis = false
 func init() {
 	conn, err := redis.Dial("tcp", fmt.Sprintf("%s:6379", getEnv("REDIS_DNS", "localhost")))
 	for {
-		log.Println("redis", err)
 		for err == nil {
-			break
+			fmt.Printf("Starting Redis:\n")
+			startRedis(conn)
+			return
 		}
+		log.Println("redis", err)
 		time.Sleep(10 * time.Second)
 	}
-	startRedis(conn)
 }
 
 func startRedis(conn redis.Conn) {
