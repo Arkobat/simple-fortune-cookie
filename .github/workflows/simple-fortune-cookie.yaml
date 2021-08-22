@@ -18,7 +18,7 @@ jobs:
           go test
 
   docker-test:
-    name: Docker Compose Persistence Test
+    name: Docket Test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -46,7 +46,7 @@ jobs:
         run: chmod +x ci/push-docker.sh && ci/push-docker.sh
 
   kubenetes-test:
-    name: Docker Compose Persistence Test
+    name: Kubernetes Test
     runs-on: ubuntu-latest
     needs: 
       - docker-push
