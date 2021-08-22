@@ -17,25 +17,26 @@ services:
 
   backend:
     container_name: backend
-    image: golang:latest
-    volumes:
-      - /home/ubuntu/simple-fortune-cookie/backend/:/backend/
+    build: ./backend
     restart: always
-    command: bash -c "cd /backend && go build && go run backend"
-    ports: 
-      - "9000:9000"
+    environment:
+        REDIS_DNS: redis
+    ports:
+     - "9000:9000"
+    depends_on:
+      - redis
     networks: 
       frontend:
       backend:
-    environment:
-      REDIS_DNS: redis
-    depends_on:
-      - redis
 
   redis:
-    container_name: redis
-    image: redis:latest
+    container_name: 'redis'
+    image: 'redis:latest'
     restart: always
+    environment:
+       ALLOW_EMPTY_PASSWORD: 'yes'
+    volumes:
+      - ./data/redis:/data
     ports: 
       - "6379:6379"
     networks: 
