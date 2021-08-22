@@ -5,6 +5,7 @@ metadata:
   labels:
     app: frontend
 spec:
+  type: LoadBalancer
   ports:
   - port: 8080
   selector:
@@ -13,7 +14,6 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     app: frontend
   name: frontend
@@ -24,7 +24,6 @@ spec:
       app: frontend
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: frontend
     spec:

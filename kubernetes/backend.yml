@@ -13,7 +13,6 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     app: backend
   name: backend
@@ -24,7 +23,6 @@ spec:
       app: backend
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: backend
     spec:
@@ -34,3 +32,6 @@ spec:
         env:
         - name: REDIS_DNS
           value: "redis"
+        ports:
+          - name: http
+            containerPort: 9000

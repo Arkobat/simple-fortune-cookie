@@ -6,14 +6,13 @@ metadata:
     app: redis
 spec:
   ports:
-  - port: 8080
+  - port: 6379
   selector:
     app: redis
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     app: redis
   name: redis
@@ -24,11 +23,12 @@ spec:
       app: redis
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: redis
     spec:
       containers:
       - name: redis
         image: redis:latest
-        
+        env:
+        - name: ALLOW_EMPTY_PASSWORD
+          value: "yes"
