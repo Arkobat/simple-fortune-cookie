@@ -12,13 +12,13 @@ var dbLink redis.Conn
 var usingRedis = false
 
 func init() {
-	conn, err := redis.Dial("tcp", fmt.Sprintf("%s:6379", getEnv("REDIS_DN2S", "localhost")))
+	conn, err := redis.Dial("tcp", fmt.Sprintf("%s:6379", getEnv("REDIS_DNS", "localhost")))
 	for {
 		log.Println("redis", err)
-		time.Sleep(10 * time.Second)
 		for err == nil {
 			break
 		}
+		time.Sleep(10 * time.Second)
 	}
 	startRedis(conn)
 }
