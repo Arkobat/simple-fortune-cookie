@@ -15,7 +15,7 @@ kind: Deployment
 metadata:
   labels:
     app: redis
-  name: redis
+  name: redis-deploy
 spec:
   replicas: 1
   selector:
