@@ -2,7 +2,7 @@
 
 # Start the service
 kubectl apply -f kubernetes/
-sleep 1s
+sleep 10s
 
 # Retrive IP and port dynamicly
 echo "Getting IPs: "
