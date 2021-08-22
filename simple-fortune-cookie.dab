@@ -1,0 +1,58 @@
+{
+  "Services": {
+    "backend": {
+      "Args": [
+        "bash",
+        "-c",
+        "cd /backend && go build && go run backend"
+      ],
+      "Env": [
+        "REDIS_DNS=redis"
+      ],
+      "Image": "golang@sha256:634cda4edda00e59167e944cdef546e2d62da71ef1809387093a377ae3404df0",
+      "Networks": [
+        "frontend",
+        "backend"
+      ],
+      "Ports": [
+        {
+          "Port": 9000,
+          "Protocol": "tcp"
+        }
+      ]
+    },
+    "frontend": {
+      "Args": [
+        "bash",
+        "-c",
+        "cd /frontend && go build && go run frontend"
+      ],
+      "Env": [
+        "BACKEND_DNS=backend"
+      ],
+      "Image": "golang@sha256:634cda4edda00e59167e944cdef546e2d62da71ef1809387093a377ae3404df0",
+      "Networks": [
+        "frontend"
+      ],
+      "Ports": [
+        {
+          "Port": 8080,
+          "Protocol": "tcp"
+        }
+      ]
+    },
+    "redis": {
+      "Image": "redis@sha256:66ce9bc742609650afc3de7009658473ed601db4e926a5b16d239303383bacad",
+      "Networks": [
+        "backend"
+      ],
+      "Ports": [
+        {
+          "Port": 6379,
+          "Protocol": "tcp"
+        }
+      ]
+    }
+  },
+  "Version": "0.1"
+}
