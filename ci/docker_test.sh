@@ -1,6 +1,6 @@
 #!/bin/bash
 docker-compose up -d
-sleep 60s
+sleep 10s
 curl -X POST localhost:8080/api/add -H "Content-Type: application/json" -d "{\"message\":\"Test Cookie?\"}"
 sleep 2s
 
@@ -28,5 +28,4 @@ fi
 
 echo "Test passed"
 wait
-
 
