@@ -40,10 +40,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Set commit variable
         run: export GIT_COMMIT="GA-$GITHUB_SHA"
-      - name: Build Docker images
-        run: chmod +x ci/build-docker.sh && ci/build-docker.sh
-      - name: Deploy to DockerHub
-        run: chmod +x ci/push-docker.sh && ci/push-docker.sh
+      - name: Push Docker SHA
+        run: chmod +x ci/deploy-docker-sha.sh && ci/deploy-docker-sha.sh
 
   kubenetes-test:
     name: Kubernetes Test
