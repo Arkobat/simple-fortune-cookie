@@ -49,8 +49,8 @@ jobs:
     name: Kubernetes Test
     runs-on: ubuntu-latest
     container: bitnami/kubectl:latest
-   # needs: 
-   #   - docker-push
+    needs: 
+      - docker-push
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
