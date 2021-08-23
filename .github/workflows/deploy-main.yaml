@@ -14,9 +14,11 @@ jobs:
     steps:
       - name: Checkout 
         uses: actions/checkout@v2
-      - name: Set commit variable
-        run: export GIT_COMMIT="GA-$GITHUB_SHA"
       - name: Push Docker SHA
-        run: chmod +x ci/deploy-docker-sha.sh && ci/deploy-docker-sha.sh
+        run: |
+          export GIT_COMMIT="GA-$GITHUB_SHA"
+          chmod +x ci/deploy-docker-sha.sh && ci/deploy-docker-sha.sh
       - name: Push Docker latest
-        run: chmod +x ci/deploy-docker-latest.sh && ci/deploy-docker-latest.sh
+        run: |
+          export GIT_COMMIT="GA-$GITHUB_SHA"
+          chmod +x ci/deploy-docker-latest.sh && ci/deploy-docker-latest.sh
