@@ -7,7 +7,7 @@ on:
 jobs:
   docker-push:
     name: Docker Push
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     env:
       docker_username: ${{ secrets.DOCKER_USERNAME }}
       docker_password: ${{ secrets.DOCKER_PASSWORD }}

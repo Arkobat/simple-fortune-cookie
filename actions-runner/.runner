@@ -1,0 +1,9 @@
+﻿{
+  "agentId": 21,
+  "agentName": "Simple Cookie",
+  "poolId": 1,
+  "poolName": "Default",
+  "serverUrl": "https://pipelines.actions.githubusercontent.com/ez0tdJ69zZ00WrY0Id8p4wt7ESFrE4qfbvIcf8ScO5EZO1Vdcd",
+  "gitHubUrl": "https://github.com/Arkobat/simple-fortune-cookie",
+  "workFolder": "_work"
+}
