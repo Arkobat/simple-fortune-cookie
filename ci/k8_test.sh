@@ -2,6 +2,9 @@
 
 # Start the service
 echo "Step 1"
+echo `docker ps | grep kube-apiserver`
+cat $HOME/.kube/config
+
 kubectl apply -f kubernetes/
 echo "Step 2"
 sleep 10s
