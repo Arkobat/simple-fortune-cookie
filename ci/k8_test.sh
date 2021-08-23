@@ -1,12 +1,11 @@
 #!/bin/bash
 
 # Copy config
-echo 'export KUBECONFIG=./kubernetes/config/config' >> $HOME/.bashrc
+echo ./kubernetes/config/config
+export KUBECONFIG=./kubernetes/config/config
 
 # Start the service
 echo "Step 1"
-echo `docker ps | grep kube-apiserver`
-cat $HOME/.kube/config
 
 kubectl apply -f kubernetes/
 echo "Step 2"
